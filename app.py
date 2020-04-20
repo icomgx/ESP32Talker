@@ -10,7 +10,7 @@
 2020-04-19 21:50   Atai      1.0         None
 """
 
-from flask import Flask, request
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -18,9 +18,11 @@ app = Flask(__name__)
 @app.route('/simple', methods=['GET', 'POST'])
 def simple():
     if request.method == 'POST':
-        test = request.form['test']
+        test = request.data
         print(test)
-        return '1'
+        return 'POST'
+    elif request.method == 'GET':
+        return 'GET'
 
 
 if __name__ == '__main__':
